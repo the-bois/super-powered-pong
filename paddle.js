@@ -31,5 +31,9 @@ function Paddle(left) {
     rectMode(CENTER);
     rect(this.x, this.y, this.w, this.h);
   }
+  this.AI = function(){
+    this.y = puck.y *damping
+    }
+  }
 
-}
+

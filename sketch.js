@@ -1,6 +1,7 @@
-var puck, left, right, paddleSpeed;
-
+var puck, left, right, paddleSpeed, damping;
 function setup() {
+  damping = 0.95
+
   //Creates a canvas the size of window, the -4 is to stop scroller from appearing
   createCanvas(windowWidth - 4, windowHeight - 4);
   //Creates variables for the objects, left and right are the paddles.
@@ -8,7 +9,7 @@ function setup() {
   left = new Paddle(true);
   right = new Paddle(false);
   //Paddle speed changes depending on the size of screen TODO: change this to height (obviously)
-  paddleSpeed = width / 60;
+  paddleSpeed = width / 120;
 }
 
 function draw() {
@@ -36,22 +37,27 @@ function draw() {
     text(puck.leftscore, 10, 40);
     text(puck.rightscore, width-20, 40);
 
+
+
   //checks for input then moves the paddle accordingly. a/z move left paddle, j/m move right paddle.
-  if (keyIsDown(65)) {
-    left.move(-paddleSpeed);
-  } else if (keyIsDown(90)) {
-    left.move(paddleSpeed);
-  }
+  //if (keyIsDown(65)) {
+    //left.move(-paddleSpeed);
+  //}else if (keyIsDown(90)) {
+    //left.move(paddleSpeed);
+  //}
 
   if (keyIsDown(74)) {
-    right.move(-paddleSpeed);
+  right.move(-paddleSpeed);
   } else if (keyIsDown(77)) {
     right.move(paddleSpeed);
   }
+
+  left.AI();
 }
 
 function keyReleased() {
   left.move(0);
   right.move(0);
+
 }
 
